@@ -2,8 +2,8 @@ package homeworks.Purchases.task;
 
 public class Purchase implements Comparable<Purchase> {
 
-    private String productName;
-    private double price;
+    public static final String PRODUCT_NAME = "Computer";
+    public static final double PRICE = 100.0;
     private int numberOfUnits;
     private double discountPercent;
     private WeekDay weekDay;
@@ -11,23 +11,17 @@ public class Purchase implements Comparable<Purchase> {
     public Purchase() {
     }
 
-    public Purchase(String productName, double price, int numberOfUnits, double discountPercent, WeekDay weekDay) {
-        this.productName = productName;
-        this.price = price;
+    public Purchase(int numberOfUnits, double discountPercent, WeekDay weekDay) {
         this.numberOfUnits = numberOfUnits;
         this.discountPercent = discountPercent;
         this.weekDay = weekDay;
     }
 
+    public Purchase(int numberOfUnits, double discountPercent, int weekDay) {
+        this(numberOfUnits, discountPercent, WeekDay.values()[weekDay]);
+    }
+
     // Getters and Setters
-    public String getProductName() {
-        return productName;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
     public int getNumberOfUnits() {
         return numberOfUnits;
     }
@@ -44,13 +38,14 @@ public class Purchase implements Comparable<Purchase> {
         return weekDay;
     }
 
-    public double getCost() {
-        return Math.round((price * numberOfUnits * (100 - discountPercent) / 100) * 100.0) / 100.0;
+    public int getCost() {
+        double cost = PRICE * numberOfUnits * (100 - discountPercent) / 100;
+        return (int) Math.round(cost / 100) * 100;
     }
 
     @Override
     public String toString() {
-        return productName + ";" + price + ";" + numberOfUnits + ";" + discountPercent + ";" + weekDay + ";" + getCost();
+        return numberOfUnits + ";" + discountPercent + ";" + weekDay + ";" + CostUtils.formatCost(getCost());
     }
 
     @Override

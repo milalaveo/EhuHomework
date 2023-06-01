@@ -1,5 +1,6 @@
 package homeworks.Purchases;
 
+import homeworks.Purchases.task.CostUtils;
 import homeworks.Purchases.task.Purchase;
 import homeworks.Purchases.task.WeekDay;
 
@@ -21,22 +22,18 @@ public class Runner {
 
             PURCHASES_NUMBER = sc.nextInt();
             for (int i = 0; i < PURCHASES_NUMBER; i++) {
-                String productName = sc.next();
-                double price = sc.nextDouble();
                 int numberOfUnits = sc.nextInt();
                 double discountPercent = sc.nextDouble();
                 WeekDay weekDay = WeekDay.values()[sc.nextInt()];
 
-                purchases[i] = new Purchase(productName, price, numberOfUnits, discountPercent, weekDay);
+                purchases[i] = new Purchase(numberOfUnits, discountPercent, weekDay);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         // Output purchases
-        for (int i = 0; i < PURCHASES_NUMBER; i++) {
-            System.out.println(purchases[i].toString());
-        }
+        printPurchases(purchases);
 
         // Calculate average cost
         double totalCost = 0;
@@ -44,7 +41,7 @@ public class Runner {
             totalCost += purchase.getCost();
         }
         double averageCost = totalCost / PURCHASES_NUMBER;
-        System.out.printf("Average cost: %.3f%n", averageCost);
+        System.out.println("Average cost: " + CostUtils.formatCost(averageCost));
 
         // Calculate total cost on Monday
         double totalMondayCost = 0;
@@ -53,7 +50,7 @@ public class Runner {
                 totalMondayCost += purchase.getCost();
             }
         }
-        System.out.printf("Total cost on Monday: %.2f%n", totalMondayCost);
+        System.out.println("Total cost on Monday: " + CostUtils.formatCost(totalMondayCost));
 
         // Find the day with the maximum purchase cost
         double maxCost = 0;
@@ -83,6 +80,15 @@ public class Runner {
             System.out.println("Purchase with number equal to 5: " + purchases[index]);
         } else {
             System.out.println("No purchase with number equal to 5 was found.");
+        }
+    }
+
+    private static void printPurchases(Purchase[] purchases) {
+        System.out.println("Product name: " + Purchase.PRODUCT_NAME);
+        System.out.println("Price: " + Purchase.PRICE);
+        System.out.println("number;discount_percent;day;cost");
+        for (Purchase purchase : purchases) {
+            System.out.println(purchase.toString());
         }
     }
 }
