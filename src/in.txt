@@ -1,0 +1,11 @@
+10
+Product1 10.5 15 5.0 1
+Product2 8.0 25 3.0 2
+Product3 12.0 5 10.0 3
+Product4 15.0 20 7.5 4
+Product5 9.5 12 5.0 5
+Product6 13.0 10 2.5 6
+Product7 11.5 18 4.0 0
+Product8 14.0 16 6.0 1
+Product9 12.5 22 8.0 2
+Product10 9.0 20 3.5 3
