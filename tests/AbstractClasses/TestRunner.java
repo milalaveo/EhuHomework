@@ -25,31 +25,31 @@ public class TestRunner {
     public void testEuroPlus() {
         Euro euro1 = new Euro(123);
         Euro euro2 = new Euro(456);
-        euro1.plus(euro2);
-        Assert.assertEquals(new Euro(579), euro1);
+        Euro result = euro1.plus(euro2);
+        Assert.assertEquals(new Euro(579), result);
     }
 
     @Test
     public void testEuroMinus() {
         Euro euro1 = new Euro(321);
         Euro euro2 = new Euro(123);
-        euro1.minus(euro2);
-        Assert.assertEquals(new Euro(198), euro1);
+        Euro result = euro1.minus(euro2);
+        Assert.assertEquals(new Euro(198), result);
     }
 
     @Test
     public void testEuroTimes() {
         Euro euro = new Euro(123);
-        euro.times(2);
-        Assert.assertEquals(new Euro(246), euro);
+        Euro result = euro.times(2);
+        Assert.assertEquals(new Euro(246), result);
     }
 
     @Test
     public void testEuroTimesClass() {
         Euro euro1 = new Euro(123);
         Euro euro2 = new Euro(2);
-        euro1.times(euro2);
-        Assert.assertEquals(new Euro(246), euro1);
+        Euro result = euro1.times(euro2);
+        Assert.assertEquals(new Euro(246), result);
     }
 
     @Test

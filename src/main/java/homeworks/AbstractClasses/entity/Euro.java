@@ -2,7 +2,7 @@ package homeworks.AbstractClasses.entity;
 
 public class Euro implements Comparable<Euro> {
 
-    private int cents;
+    private final int cents;
 
     public Euro() {
         this.cents = 0;
@@ -17,28 +17,23 @@ public class Euro implements Comparable<Euro> {
     }
 
     public Euro plus(Euro other) {
-        this.cents += other.cents;
-        return this;
+        return new Euro(this.cents + other.cents);
     }
 
     public Euro minus(Euro other) {
-        this.cents -= other.cents;
-        return this;
+        return new Euro(this.cents - other.cents);
     }
 
     public Euro times(Euro other) {
-        this.cents *= other.cents;
-        return this;
+        return new Euro(this.cents * other.cents);
     }
 
     public Euro times(int value) {
-        this.cents *= value;
-        return this;
+        return new Euro(this.cents * value);
     }
 
     public Euro times(double value) {
-        this.cents = (int) Math.round(this.cents * value);
-        return this;
+        return new Euro((int) Math.round(this.cents * value));
     }
 
     @Override
